@@ -1,0 +1,21 @@
+データベース作成手順
+①A5M2.exeで
+　CREATE USER webinnuser WITH PASSWORD 'himitu';
+　CREATE DATABASE webinn OWNER webinnuser ENCODING 'UTF8';を入力
+
+②コマンドプロンプトにて、psql -U postgres -lと記入
+　パスワードはhimituと記入
+
+③名前・所有者などの表の下に「webinn」というデータベースが有ることを確認
+　→exitでコマンドプロンプトを抜ける
+
+④A5M2.exeで再度接続
+　→データベースからデータベースの追加に移行
+　→データベース名：webinn
+　→ユーザ名　　　：webinnuser
+ 　 パスワード　　：himitu　と入力、接続を試みる。
+
+⑤接続に成功した場合、データベースにwebinnを指定し、
+　「杉本.sql」をA5M2.exeにドロップ（documentにあります）
+
+⑥それらを1つの命令ごとに実行してください

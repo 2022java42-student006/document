@@ -1,5 +1,3 @@
-ALTER TABLE member OWNER TO webinnuser;
-INSERT INTO member_information VALUES(1,'Vh‘¾˜Y','“Œ‹“sVh‹æ','090-1111-1111','abc@abc.com','1965-10-17','2022-03-30','abc');
 CREATE TABLE accommodation_information(
 	ac_id serial not null,
 	ac_name VARCHAR(20) NOT NULL,
