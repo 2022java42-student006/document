@@ -69,10 +69,13 @@ create table public.accommodation_information(
   ac_id serial not null,
 	ac_name VARCHAR(20) NOT NULL,
 	ac_code INTEGER,
-	address VARCHAR(50) NOT NULL,
+	ac_address VARCHAR(50) NOT NULL,
+    ac_tel VARCHAR(20) NOT NULL,
+    ac_room INTEGER NOT NULL,
+    plan_id INTEGER NOT NULL,
     primary key(ac_id)
     );
-    
+
 create table public.accommodation_information_time(
   ac_id serial not null,
   checkin_time time not null,
@@ -99,6 +102,17 @@ create table public.reservation_sub(
   ,  primary key (mem_id)
 );
 
+CREATE TABLE public.plan_information(
+  plan_id serial NOT  NULL
+  ,ac_id INTEGER NOT NULL
+  ,ac_name VARCHAR(20) NOT NULL
+  ,plan_sub VARCHAR(50) 
+  ,price INTEGER NOT NULL
+  ,room_num INTEGER NOT NULL
+  ,PRIMARY KEY (plan_id)
+  ,FOREIGN KEY (ac_id)REFERENCES accommodation_information
+  );
+  
 /*ここでサンプルのデータをテーブルに挿入*/
 INSERT INTO member_information VALUES(1,'新宿 太郎','東京都新宿区','090-1111-1111','abc@abc.co.jp','1965-10-17','2018-10-15','2022-04-07');
 
@@ -111,7 +125,7 @@ ALTER TABLE reservation ADD co_date DATE;
 
 /*それぞれのテーブルにサンプルデータに挿入*/
 INSERT INTO member_information_login VALUES(DEFAULT,1,DEFAULT);
-INSERT INTO accommodation_information VALUES(100001,'インペリアル・パレス',1,'東京都港区汐留01-01');
+INSERT INTO accommodation_information VALUES(100001,'インペリアル・パレス',1,'東京都港区汐留01-01','01-0123-4567',30,123);
 INSERT INTO reservation VALUES(1,100001,'インペリアル・パレス','2020-07-28','2020-07-30');
 INSERT INTO accommodation_information_time VALUES(100001,'18:00','8:00');
 
@@ -120,4 +134,5 @@ DROP TABLE IF EXISTS canacel;
 
 /*外部キーの設定*/
 ALTER TABLE reservation ADD FOREIGN KEY(ac_id) REFERENCES accommodation_information_time;
- 
+ALTER TABLE accommodation_information ADD FOREIGN KEY(plan_id) REFERENCES plan_information;
+DROP TABLE accommodation_information CASCADE;
