@@ -84,7 +84,8 @@ create table public.reservation (
   mem_id serial not null
   , ac_id int not null
   , ac_name VARCHAR(20) NOT NULL
-  , re_date date
+  , ci_date date NOT NULL
+  , co_date date NOT NULL
   ,primary key (mem_id)
 );
 
@@ -98,4 +99,25 @@ create table public.reservation_sub(
   ,  primary key (mem_id)
 );
 
+/*ここでサンプルのデータをテーブルに挿入*/
+INSERT INTO member_information VALUES(1,'新宿 太郎','東京都新宿区','090-1111-1111','abc@abc.co.jp','1965-10-17','2018-10-15','2022-04-07');
 
+/*member_information_loginにログインIDの初期設定値に“abc0123”、パスワードの初期設定値として“himitu”を設定を追加する*/
+ALTER TABLE member_information_login ALTER login_id SET DEFAULT 'abc0123';
+ALTER TABLE member_information_login ALTER password SET DEFAULT 'himitu';
+ALTER TABLE member_information RENAME address TO mem_address;
+ALTER TABLE reservation RENAME re_date TO ci_date;
+ALTER TABLE reservation ADD co_date DATE;
+
+/*それぞれのテーブルにサンプルデータに挿入*/
+INSERT INTO member_information_login VALUES(DEFAULT,1,DEFAULT);
+INSERT INTO accommodation_information VALUES(100001,'インペリアル・パレス',1,'東京都港区汐留01-01');
+INSERT INTO reservation VALUES(1,100001,'インペリアル・パレス','2020-07-28','2020-07-30');
+INSERT INTO accommodation_information_time VALUES(100001,'18:00','8:00');
+
+DROP TABLE IF EXISTS reservation_sub; 
+DROP TABLE IF EXISTS canacel;
+
+/*外部キーの設定*/
+ALTER TABLE reservation ADD FOREIGN KEY(ac_id) REFERENCES accommodation_information_time;
+ 
