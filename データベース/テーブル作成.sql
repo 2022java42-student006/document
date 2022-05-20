@@ -3,7 +3,7 @@ create table public.member_information (
   , name character varying(20) not null
   , address character varying(100)
   , tel character varying(20) not null
-  , email character varying(100)
+  , email character varying(100) not null
   , birthday date
   , en_date date
   , se_date date
@@ -93,10 +93,11 @@ CREATE TABLE public.plan_information_sub(
 /*ここでサンプルのデータをテーブルに挿入*/
 INSERT INTO member_information VALUES(1,'新宿 太郎','東京都新宿区','090-1111-1111','abc@abc.co.jp','1965-10-17','2018-10-15','2022-04-07');
 INSERT INTO member_information_login VALUES(DEFAULT,1,DEFAULT);
-INSERT INTO accommodation_information VALUES(100001,'インペリアル・パレス',1,'東京都港区汐留01-01','01-0123-4567',30,123);
-INSERT INTO reservation VALUES(1,100001,'インペリアル・パレス','2020-07-28','2020-07-30');
-INSERT INTO accommodation_information_time VALUES(100001,'18:00','8:00');
-INSERT INTO plan_information VALUES(123,100001,'インペリアル・パレス','2泊3日・シングル・夕食付',35000,15);
-INSERT INTO plan_information_sub VALUES(1,123,'2020-07-01','2020-08-18');
+INSERT INTO accommodation_information VALUES(1,'インペリアル・パレス',1,'東京都港区汐留01-01','01-0123-4567',30,123);
+INSERT INTO reservation VALUES(1,1,1,'2020-07-28','2020-07-30');
+INSERT INTO accommodation_information_time VALUES(1,'18:00','8:00');
+INSERT INTO plan_information VALUES(1,1,'2泊3日・シングル・夕食付',35000,15);
+INSERT INTO plan_information_sub VALUES(1,1,'2020-07-01','2020-08-18');
+
 
 
