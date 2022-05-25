@@ -20,6 +20,8 @@ create table public.member_information (
   , tel varchar(20) not null
   , email varchar(100)
   , birthday date
+  ,login_id int NOT NULL 
+  , password varchar(12) NOT NULL
   , en_date date
   , se_date date
   , primary key (mem_id)
@@ -100,4 +102,4 @@ INSERT INTO plan_information VALUES(1,1,'2泊3日・シングル・夕食付',35000,15);
 INSERT INTO plan_information_sub VALUES(1,1,'2020-07-01','2020-08-18');
 
 
-
+DELETE FROM member_information WHERE mem_id=4; 
