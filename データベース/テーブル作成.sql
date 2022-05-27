@@ -33,18 +33,22 @@ create table public.member_information_login(
   , foreign key (mem_id)
   references member_information(mem_id)
   );
-  
+  drop table accommodation_information cascade;
 create table public.accommodation_information(
   ac_id serial not null,
 	ac_name VARCHAR(20) NOT NULL,
-	ac_code INTEGER,
+	
 	ac_address VARCHAR(50) NOT NULL,
     ac_tel VARCHAR(20) NOT NULL,
     ac_room INTEGER NOT NULL,
-    plan_id INTEGER NOT NULL,
+    checkin_time int not null,
+    checkout_time int not null,
+   
     primary key(ac_id)
     );
 
+
+    
 create table public.accommodation_information_time(
   ac_id serial not null,
   checkin_time time not null,
@@ -53,12 +57,14 @@ create table public.accommodation_information_time(
   );
   
 create table public.reservation (
-  mem_id serial not null
+  reserved_id serial 
+  ,mem_id int not null
   , ac_id int not null
   , ac_name VARCHAR(20) NOT NULL
-  , ci_date date NOT NULL
-  , co_date date NOT NULL
-  ,primary key (mem_id)
+  , ci_date int NOT NULL
+  , co_date int NOT NULL
+  ,num_people int
+  ,primary key (reserved_id)
 );
 
 create table public.reservation_sub(
@@ -74,7 +80,7 @@ create table public.reservation_sub(
 CREATE TABLE public.plan_information(
   plan_id serial NOT  NULL
   ,ac_id INTEGER NOT NULL
-  ,ac_name VARCHAR(20) NOT NULL
+  ,plan_name VARCHAR(20) NOT NULL
   ,plan_sub VARCHAR(50) 
   ,price INTEGER NOT NULL
   ,room_num INTEGER NOT NULL
@@ -99,5 +105,32 @@ INSERT INTO accommodation_information_time VALUES(1,'18:00','8:00');
 INSERT INTO plan_information VALUES(1,1,'2泊3日・シングル・夕食付',35000,15);
 INSERT INTO plan_information_sub VALUES(1,1,'2020-07-01','2020-08-18');
 
+DROP TABLE member_information CASCADE;
+DROP TABLE accommodation_information CASCADE;
+DROP TABLE plan_information CASCADE;
+create table public.accommodation_information(
+  ac_id serial not null,
+	ac_name VARCHAR(20) NOT NULL,
+	ac_code INTEGER,
+	ac_address VARCHAR(50) NOT NULL,
+    ac_tel VARCHAR(20) NOT NULL,
+    ac_room INTEGER NOT NULL,
+    plan_id INTEGER NOT NULL,
+  checkin_time INTEGER not null,
+  checkout_time INTEGER not null,
+    primary key(ac_id)
+    );
+    
+    create table public.plan_information (
+  plan_id serial primary key
+  , ac_id integer not null
+  , plan_name character varying(20) not null
+  , plan_sub character varying(50)
+  , price integer not null
+  , room_num integer not null
+  
+);
+create sequence plan_information_ac_id_seq;
+DROP table 
 
-
+DELETE FROM accommodation_information;
