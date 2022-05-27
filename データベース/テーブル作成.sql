@@ -99,5 +99,6 @@ INSERT INTO accommodation_information_time VALUES(1,'18:00','8:00');
 INSERT INTO plan_information VALUES(1,1,'2泊3日・シングル・夕食付',35000,15);
 INSERT INTO plan_information_sub VALUES(1,1,'2020-07-01','2020-08-18');
 
-
+ALTER TABLE plan_information_sub ALTER ac_checkindate DROP NOT NULL;
+ALTER TABLE plan_information_sub ALTER ac_checkoutdate DROP NOT NULL;
 
