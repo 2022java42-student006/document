@@ -102,3 +102,12 @@ INSERT INTO plan_information_sub VALUES(1,1,'2020-07-01','2020-08-18');
 ALTER TABLE plan_information_sub ALTER ac_checkindate DROP NOT NULL;
 ALTER TABLE plan_information_sub ALTER ac_checkoutdate DROP NOT NULL;
 
+  /*管理者ログイン情報テーブル*/
+CREATE TABLE public.kanri_information(
+  login_id INTEGER NOT  NULL
+  ,password VARCHAR(12) NOT NULL
+  ,kanri_name varchar
+  ,PRIMARY KEY (login_id)
+  ); 
+
+INSERT INTO kanri_information VALUES(1234567, 'himitu', '管理');
