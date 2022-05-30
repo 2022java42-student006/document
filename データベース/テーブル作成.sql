@@ -111,3 +111,18 @@ CREATE TABLE public.kanri_information(
   ); 
 
 INSERT INTO kanri_information VALUES(1234567, 'himitu', '管理');
+
+
+
+/*宿情報の表作成の際、128行目まで実行して下さい。*/
+create table public.accommodation_information (
+  ac_id serial not null
+  , ac_name character varying(20) not null
+  , ac_address character varying(50) not null
+  , ac_tel character varying(20) not null
+  , ac_room integer not null
+  , checkin_time integer not null
+  , checkout_time integer not null
+  , primary key (ac_id)
+);
+create sequence accommodation_information_ac_id_seq;
